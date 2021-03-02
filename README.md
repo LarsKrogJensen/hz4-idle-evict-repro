@@ -153,7 +153,47 @@ Main - Repo stats, size: 16 sessions: 0 users: 0
 Main - Repo stats, size: 0 sessions: 0 users: 0
 ``` 
 
+### Hazelcast 4.2 beta
 
+With Hazelcast 4.2 beta, an exception is thrown                      
+
+```
+12:43:18.948 [ForkJoinPool.commonPool-worker-9] ERROR c.h.map.impl.query.QueryOperation - [10.192.35.218]:5701 [hz4-repro] [4.2-BETA-1] null
+java.lang.NullPointerException: null
+	at com.hazelcast.map.impl.recordstore.AbstractEvictableRecordStore.accessRecord(AbstractEvictableRecordStore.java:184)
+	at com.hazelcast.map.impl.recordstore.AbstractEvictableRecordStore.expireOrAccess(AbstractEvictableRecordStore.java:154)
+	at com.hazelcast.map.impl.MapContainer.hasNotExpired(MapContainer.java:185)
+	at com.hazelcast.internal.util.IterableUtil$2.hasNext(IterableUtil.java:93)
+	at com.hazelcast.map.impl.query.ParallelAccumulationExecutor.accumulateParallel(ParallelAccumulationExecutor.java:80)
+	at com.hazelcast.map.impl.query.ParallelAccumulationExecutor.execute(ParallelAccumulationExecutor.java:60)
+	at com.hazelcast.map.impl.query.AggregationResultProcessor.populateResult(AggregationResultProcessor.java:40)
+	at com.hazelcast.map.impl.query.AggregationResultProcessor.populateResult(AggregationResultProcessor.java:27)
+	at com.hazelcast.map.impl.query.QueryRunner.populateNonEmptyResult(QueryRunner.java:241)
+	at com.hazelcast.map.impl.query.QueryRunner.runIndexOrPartitionScanQueryOnOwnedPartitions(QueryRunner.java:150)
+	at com.hazelcast.map.impl.query.QueryRunner.runIndexOrPartitionScanQueryOnOwnedPartitions(QueryRunner.java:107)
+	at com.hazelcast.map.impl.query.QueryOperation.callInternal(QueryOperation.java:89)
+	at com.hazelcast.map.impl.query.QueryOperation.call(QueryOperation.java:78)
+	at com.hazelcast.spi.impl.operationservice.impl.OperationRunnerImpl.call(OperationRunnerImpl.java:272)
+	at com.hazelcast.spi.impl.operationservice.impl.OperationRunnerImpl.run(OperationRunnerImpl.java:248)
+	at com.hazelcast.spi.impl.operationservice.impl.OperationRunnerImpl.run(OperationRunnerImpl.java:213)
+	at com.hazelcast.spi.impl.operationexecutor.impl.OperationExecutorImpl.run(OperationExecutorImpl.java:411)
+	at com.hazelcast.spi.impl.operationexecutor.impl.OperationExecutorImpl.runOrExecute(OperationExecutorImpl.java:438)
+	at com.hazelcast.spi.impl.operationservice.impl.Invocation.doInvokeLocal(Invocation.java:600)
+	at com.hazelcast.spi.impl.operationservice.impl.Invocation.doInvoke(Invocation.java:579)
+	at com.hazelcast.spi.impl.operationservice.impl.Invocation.invoke0(Invocation.java:540)
+	at com.hazelcast.spi.impl.operationservice.impl.Invocation.invoke(Invocation.java:240)
+	at com.hazelcast.spi.impl.operationservice.impl.OperationServiceImpl.invokeOnTarget(OperationServiceImpl.java:359)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.dispatchFullQueryOnAllMembersOnQueryThread(QueryEngineImpl.java:291)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.dispatchFullQueryOnQueryThread(QueryEngineImpl.java:267)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.dispatchOnQueryThreads(QueryEngineImpl.java:152)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.doRunOnQueryThreads(QueryEngineImpl.java:145)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.runOnGivenPartitions(QueryEngineImpl.java:124)
+	at com.hazelcast.map.impl.query.QueryEngineImpl.execute(QueryEngineImpl.java:94)
+	at com.hazelcast.map.impl.proxy.MapProxySupport.executeQueryInternal(MapProxySupport.java:1378)
+	at com.hazelcast.map.impl.proxy.MapProxyImpl.aggregate(MapProxyImpl.java:854)
+	at SessionRepository.sessionCountFor(SessionRepository.java:33)
+```
+                                  
 
 
 

@@ -42,7 +42,7 @@ public class Main {
             });
         });
 
-        log.info("Added {} sessions", repo.size());
+        log.info("Added {} sessions", sessionsPerUser * userCount);
     }
 
     private static void queryStats(SessionRepository repo) {
