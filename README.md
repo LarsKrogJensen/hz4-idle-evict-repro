@@ -17,7 +17,7 @@ In test scenario we run an aggregation every 3:e second to log number of session
 
 Notice the jumps in the stats (users, sessions) while entries are very, very slowly being evicted.
 
-``
+```
 10:19:55.705 [main] INFO  Main - Added 5000 sessions
 10:19:55.706 [main] INFO  Main - Watching stats every 3 seconds, expects that entries starts to expiry after 30 seconds
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
@@ -38,18 +38,17 @@ Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
-Main - Repo stats, size: 5000 sessions: 5000 users: 1000
-eviction starts, expected 0/0
-Main - Repo stats, size: 4505 sessions: 1560 users: 411 
+Main - Repo stats, size: 5000 sessions: 5000 users: 1000 
+Main - Repo stats, size: 4505 sessions: 1560 users: 411  <-- eviction starts, expected 0/0
 Main - Repo stats, size: 4505 sessions: 1560 users: 411
-Main - Repo stats, size: 4199 sessions: 2539 users: 668 
+Main - Repo stats, size: 4199 sessions: 2539 users: 668  <-- stats 'jump'
 Main - Repo stats, size: 4199 sessions: 2539 users: 668
 Main - Repo stats, size: 4017 sessions: 3132 users: 823
 Main - Repo stats, size: 3907 sessions: 3472 users: 913
 Main - Repo stats, size: 3907 sessions: 3472 users: 913
 Main - Repo stats, size: 3846 sessions: 3646 users: 960
 Main - Repo stats, size: 3846 sessions: 3646 users: 960
-Main - Repo stats, size: 3812 sessions: 3732 users: 984
+Main - Repo stats, size: 3812 sessions: 3732 users: 984   
 Main - Repo stats, size: 3791 sessions: 3766 users: 995
 Main - Repo stats, size: 3791 sessions: 3766 users: 995
 Main - Repo stats, size: 3785 sessions: 3785 users: 1000
@@ -103,7 +102,7 @@ Main - Repo stats, size: 1 sessions: 1 users: 1
 Main - Repo stats, size: 1 sessions: 1 users: 1
 Main - Repo stats, size: 0 sessions: 0 users: 0
 Main - Repo stats, size: 0 sessions: 0 users: 0
-``
+```
 
 #### Output if disable aggregate during eviction callback
                                                     
@@ -112,7 +111,7 @@ If we instead comment out, SessionRepository:55:
 
 and run again entries are evicted much more prompty without and weird stats 'jumps'
 
-``
+```
 Main - Added 5000 sessions
 Main - Watching stats every 3 seconds, expects that entries starts to expiry after 30 seconds
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
@@ -135,7 +134,7 @@ Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 5000 sessions: 5000 users: 1000
 Main - Repo stats, size: 4513 sessions: 0 users: 0   <-- eviction starts
-Main - Repo stats, size: 4513 sessions: 0 users: 0
+Main - Repo stats, size: 4513 sessions: 0 users: 0       no jumps, very clean
 Main - Repo stats, size: 4022 sessions: 0 users: 0
 Main - Repo stats, size: 4022 sessions: 0 users: 0
 Main - Repo stats, size: 3482 sessions: 0 users: 0
@@ -152,7 +151,7 @@ Main - Repo stats, size: 505 sessions: 0 users: 0
 Main - Repo stats, size: 16 sessions: 0 users: 0
 Main - Repo stats, size: 16 sessions: 0 users: 0
 Main - Repo stats, size: 0 sessions: 0 users: 0
-``
+``` 
 
 
 
